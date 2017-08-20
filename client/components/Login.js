@@ -1,6 +1,6 @@
-'use strict';
-import React, {Component} from 'react';
-import '../css/login.scss';
+"use strict";
+import React, {Component} from "react";
+import "../css/login.scss";
 
 class Login extends Component {
 
@@ -9,13 +9,20 @@ class Login extends Component {
         this.state = {
             errors: {},
             user: {
-                name: '',
-                password: ''
+                name: "",
+                password: ""
             }
         };
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+
     }
+
+    /*
+   componentWillUnmount() {
+
+   }
+   */
+
 
     handleInputChange(event) {
         const target = event.target;
@@ -29,8 +36,8 @@ class Login extends Component {
     }
 
     handleLoginSubmit(event) {
-        alert('Login submitted: name=' + this.state.user.name);
-        const errors = {summary: 'some error'};
+        alert("Login submitted: name=" + this.state.user.name);
+        const errors = {summary: "some error"};
         this.setState({
             errors
         });
@@ -44,7 +51,7 @@ class Login extends Component {
                 {this.state.errors.summary ?
                     <p className="alert">{this.state.errors.summary}</p> : null
                 }
-                <form className="pure-form pure-form-aligned" onSubmit={this.handleLoginSubmit}>
+                <form className="pure-form pure-form-aligned" onSubmit={(event) => this.handleLoginSubmit(event)}>
                     <fieldset>
                         <div className="pure-control-group">
                             <input id="name" name="name" type="text" placeholder="Username"
@@ -66,8 +73,6 @@ class Login extends Component {
             </div>
         );
     }
-
-
 }
 
 export default Login;
