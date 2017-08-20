@@ -60,6 +60,12 @@ module.exports = {
         ]
     },
     plugins: [
+        /*
+        new Webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }}),
+            */
         extractPlugin,
         new HtmlWebpackPlugin({
             filename: 'index.html',
