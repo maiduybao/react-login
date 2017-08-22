@@ -14,7 +14,7 @@ const PROJECT_PATHS = {
 };
 
 module.exports = {
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     entry: [path.join(PROJECT_PATHS.app, 'main.js')],
     output: {
         path: PROJECT_PATHS.build,
@@ -23,11 +23,6 @@ module.exports = {
     },
     module: {
         loaders: [
-            {
-                test: /\.js$/,
-                loader: 'eslint-loader',
-                exclude: /node_modules/,
-            },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -40,6 +35,11 @@ module.exports = {
                 test: /\.jsx$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.js$/,
+                loader: 'eslint-loader',
+                exclude: /node_modules/,
             },
             {
                 test: /\.html$/,
