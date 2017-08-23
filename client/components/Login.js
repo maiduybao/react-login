@@ -56,11 +56,11 @@ class Login extends Component {
                     <fieldset>
                         <div className="pure-control-group">
                             <input id="name" name="name" type="text" placeholder="Username"
-                                   value={this.state.user.name} onChange={this.handleInputChange}/>
+                                   value={this.state.user.name || ""} onChange={this.handleInputChange}/>
                         </div>
                         <div className="pure-control-group">
                             <input id="password" name="password" type="password" placeholder="Password"
-                                   value={this.state.user.password} onChange={this.handleInputChange}/>
+                                   value={this.state.user.password || ""} onChange={this.handleInputChange}/>
                         </div>
                         <div className="pure-control-group">
                             <button type="submit" name="login" className="pure-button pure-button-primary">Login
