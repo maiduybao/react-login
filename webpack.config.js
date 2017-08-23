@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path');
-//const Webpack = require('webpack');
+const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TextWebpackPlugin = require('extract-text-webpack-plugin');
@@ -14,7 +14,7 @@ const PROJECT_PATHS = {
 };
 
 module.exports = {
-    devtool: 'source-map',
+  //  devtool: 'source-map',
     entry: [path.join(PROJECT_PATHS.app, 'main.js')],
     output: {
         path: PROJECT_PATHS.build,
@@ -65,12 +65,12 @@ module.exports = {
         ]
     },
     plugins: [
-        /*
         new Webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
-            }}),
-            */
+            }, 
+            sourceMap: false
+        }),
         extractPlugin,
         new HtmlWebpackPlugin({
             filename: 'index.html',
