@@ -256,7 +256,7 @@
         ],
         "sort-imports": "off",
         "sort-keys": [
-            "error",
+            "off",
             "asc"
         ],
         "sort-vars": "error",

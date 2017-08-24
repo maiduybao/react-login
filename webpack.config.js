@@ -1,80 +1,78 @@
-'use strict';
-const path = require('path');
-const Webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const TextWebpackPlugin = require('extract-text-webpack-plugin');
-let extractPlugin = new TextWebpackPlugin({
-    filename: 'main_[hash].css'
+"use strict";
+
+const path = require("path");
+const Webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractSass = new ExtractTextPlugin({
+    filename: "main_[hash].css"
 });
 
-const PROJECT_PATHS = {
-    app: path.join(__dirname, 'client'),
-    build: path.join(__dirname, 'dist')
-};
 
+const PROJECT_PATHS = {
+    app: path.join(__dirname, "client"),
+    build: path.join(__dirname, "dist")
+};
 module.exports = {
-  //  devtool: 'source-map',
-    entry: [path.join(PROJECT_PATHS.app, 'main.js')],
+    devtool: 'inline-source-map',
+    entry: [path.join(PROJECT_PATHS.app, "main.js")],
     output: {
-        path: PROJECT_PATHS.build,
+        path: path.resolve(__dirname, "dist"),
         //    filename: 'bundle.js'
-        filename: 'bundle_[hash].js',
+        filename: "bundle_[hash].js"
     },
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/,
-                query: {
-                    presets: ['react', 'es2015']
+                test: /\.(js|jsx)$/,
+                loader: "babel-loader",
+                exclude: [path.resolve(__dirname, "/node_modules/")],
+                options: {
+                    presets: [
+                        "react",
+                        "es2015"
+                    ]
                 }
             },
             {
-                test: /\.jsx$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.js$/,
-                loader: 'eslint-loader',
-                exclude: /node_modules/,
-            },
-            {
                 test: /\.html$/,
-                loader: 'html-loader'
+                loader: "html-loader",
+                exclude: [path.resolve(__dirname, "/node_modules/")]
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/,
-                loader: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'img/',
-                            publicPath: 'img/'
-                        }
-                    }
-                ]
+                loader: "file-loader",
+                exclude: [path.resolve(__dirname, "/node_modules/")],
+                options: {
+                    name: "[name].[ext]",
+                    outputPath: "img/",
+                    publicPath: "img/"
+                }
             },
             {
-                test: /\.(css|scss|sass)$/,
-                loader: extractPlugin.extract({use: ['css-loader', 'sass-loader']}),
+                test: /\.(scss|sass)$/,
+                use: extractSass.extract({
+                    use: [
+                        "css-loader",
+                        "sass-loader"
+                    ],
+                    fallback: "style-loader"
+                }),
+                exclude: [path.resolve(__dirname, "/node_modules/")]
             }
         ]
+
     },
     plugins: [
         new Webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }, 
-            sourceMap: false
+            sourceMap: true
         }),
-        extractPlugin,
+        extractSass,
         new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: path.join(PROJECT_PATHS.app, 'index.html')
+            filename: "index.html",
+            template: path.join(PROJECT_PATHS.app, "index.html")
         }),
         new CleanWebpackPlugin([PROJECT_PATHS.build])
     ]
