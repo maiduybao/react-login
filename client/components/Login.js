@@ -9,8 +9,8 @@ class Login extends Component {
         super(props);
         this.state = {
             errors: {},
-            user: {
-                name: "",
+            credentials: {
+                user: "",
                 password: ""
             }
         };
@@ -29,15 +29,15 @@ class Login extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        const user = this.state.user;
-        user[name] = value;
+        const credentials = this.state.credentials;
+        credentials[name] = value;
         this.setState({
-            user
+            credentials
         });
     }
 
     handleLoginSubmit(event) {
-        alert("Login submitted: name=" + this.state.user.name);
+        alert("Login submitted: user=" + this.state.credentials.user);
         const errors = {summary: "some error"};
         this.setState({
             errors
@@ -55,12 +55,12 @@ class Login extends Component {
                 <form className="pure-form pure-form-aligned" onSubmit={(event) => this.handleLoginSubmit(event)}>
                     <fieldset>
                         <div className="pure-control-group">
-                            <input id="name" name="name" type="text" placeholder="Username"
-                                   value={this.state.user.name || ""} onChange={this.handleInputChange}/>
+                            <input id="user" name="user" type="text" placeholder="Username"
+                                   value={this.state.credentials.user || ""} onChange={this.handleInputChange}/>
                         </div>
                         <div className="pure-control-group">
                             <input id="password" name="password" type="password" placeholder="Password"
-                                   value={this.state.user.password || ""} onChange={this.handleInputChange}/>
+                                   value={this.state.credentials.password || ""} onChange={this.handleInputChange}/>
                         </div>
                         <div className="pure-control-group">
                             <button type="submit" name="login" className="pure-button pure-button-primary">Login
