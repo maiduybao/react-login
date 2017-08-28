@@ -75,7 +75,18 @@ module.exports = {
             template: path.join(PROJECT_PATHS.app, "index.html")
         }),
         new CleanWebpackPlugin([PROJECT_PATHS.build])
-    ]
+    ],
+    devServer: {
+        contentBase: path.resolve(__dirname, "dist"),
+        compress: true,
+        port: 8080,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000',
+                secure: false
+            }
+        }
+    }
 };
 
 
