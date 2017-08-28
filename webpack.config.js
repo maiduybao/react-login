@@ -32,7 +32,8 @@ module.exports = {
                 options: {
                     presets: [
                         "react",
-                        "es2015"
+                        "es2015",
+                        "stage-2"
                     ]
                 }
             },
@@ -81,8 +82,8 @@ module.exports = {
         compress: true,
         port: 8080,
         proxy: {
-            '/api': {
-                target: 'http://localhost:3000',
+            "/api": {
+                target: "http://localhost:3000",
                 secure: false
             }
         }
