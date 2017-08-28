@@ -1,3 +1,5 @@
 node_modules/*
 client/css/*
 client/images/*
+webpack.config.js
+*.json
