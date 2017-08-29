@@ -8,7 +8,7 @@ class Login extends Component {
         this.state = {
             errors: {},
             credentials: {
-                user: "",
+                email: "",
                 password: ""
             }
         };
@@ -35,7 +35,7 @@ class Login extends Component {
     }
 
     handleLoginSubmit(event) {
-        alert("Login submitted: user=" + this.state.credentials.user);
+        alert("Login submitted: email=" + this.state.credentials.email);
         const errors = {summary: "some error"};
         this.setState({
             errors
@@ -53,8 +53,8 @@ class Login extends Component {
                 <form className="pure-form pure-form-aligned" onSubmit={(event) => this.handleLoginSubmit(event)}>
                     <fieldset>
                         <div className="pure-control-group">
-                            <input id="user" name="user" type="text" placeholder="Username"
-                                   value={this.state.credentials.user || ""} onChange={this.handleInputChange}/>
+                            <input id="email" name="email" type="text" placeholder="Email"
+                                   value={this.state.credentials.email || ""} onChange={this.handleInputChange}/>
                         </div>
                         <div className="pure-control-group">
                             <input id="password" name="password" type="password" placeholder="Password"
