@@ -16,7 +16,7 @@ const PROJECT_PATHS = {
     build: path.join(__dirname, "dist")
 };
 module.exports = {
-    devtool: 'inline-source-map',
+    devtool: "inline-source-map",
     entry: [path.join(PROJECT_PATHS.app, "main.js")],
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -67,8 +67,8 @@ module.exports = {
 
     },
     plugins: [
-        new Webpack.optimize.UglifyJsPlugin({
-            sourceMap: true
+        new Webpack.DefinePlugin({
+            "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
         }),
         extractSass,
         new HtmlWebpackPlugin({
@@ -76,7 +76,11 @@ module.exports = {
             template: path.join(PROJECT_PATHS.app, "index.html")
         }),
         new CleanWebpackPlugin([PROJECT_PATHS.build])
-    ],
+    ].concat(process.env.NODE_ENV === "production" ? [
+        new Webpack.optimize.UglifyJsPlugin({
+            sourceMap: true
+        })
+    ] : []),
     devServer: {
         contentBase: path.resolve(__dirname, "dist"),
         compress: true,
