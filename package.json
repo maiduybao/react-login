@@ -51,6 +51,8 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
     "purecss-sass": "^1.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

@@ -1,6 +1,7 @@
-import React, {Component} from "react";
+import React from "react";
+import AuthorizedComponent from "./AuthorizedComponent";
 
-class Dashboard extends Component {
+class Dashboard extends AuthorizedComponent {
     render() {
         return (
             <div>Dashboard</div>

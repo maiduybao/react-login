@@ -13,7 +13,6 @@ class Login extends Component {
             }
         };
         this.handleInputChange = this.handleInputChange.bind(this);
-
     }
 
     /*
