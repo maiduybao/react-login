@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import request from "superagent";
 import "../css/login.scss";
 
 class Login extends Component {
@@ -34,12 +35,25 @@ class Login extends Component {
     }
 
     handleLoginSubmit(event) {
-        alert("Login submitted: email=" + this.state.credentials.email);
-        const errors = {summary: "some error"};
-        this.setState({
-            errors
-        });
+        alert("handleLoginSubmit");
         event.preventDefault();
+        request
+            .post("//localhost:3000/api/authenticate")
+            .send({
+                email: this.state.credentials.email,
+                password: this.state.credentials.password
+            })
+            .set("Accept", "application/json")
+            .end((error, response) => {
+                if (error) {
+                    const errors = {summary: error.message};
+                    this.setState({
+                        errors
+                    });
+                } else {
+                    alert(response.json());
+                }
+            });
     }
 
     render() {

@@ -34,7 +34,8 @@ module.exports = {
                         "react",
                         "es2015",
                         "stage-2"
-                    ]
+                    ],
+                    compact: false
                 }
             },
             {
