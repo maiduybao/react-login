@@ -9,7 +9,7 @@ class AuthorizedComponent extends Component {
 
     componentWillMount() {
         // check if user data available
-        const authorizedUser = JSON.parse(localStorage.getItem("principle"));
+        const authorizedUser = JSON.parse(sessionStorage.getItem("principle"));
         if (!authorizedUser) {
             // redirect to login if not
             this.props.history.push("/login");

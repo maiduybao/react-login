@@ -9,9 +9,9 @@ class RoleAwareComponent extends Component {
     }
 
     shouldBeVisible() {
-        const authorizedUser = JSON.parse(localStorage.getItem("principle"));
+        const authorizedUser = JSON.parse(sessionStorage.getItem("principle"));
         if (authorizedUser) {
-            return lodash.intersection(this.props.authorize, authorizedUser.role).length === 0
+            return lodash.intersection(this.props.authorize, authorizedUser.role).length === 0;
         }
         return false;
     }
