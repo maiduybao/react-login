@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import lodash from "lodash";
 
 class RoleAwareComponent extends Component {
@@ -16,10 +15,5 @@ class RoleAwareComponent extends Component {
         return false;
     }
 }
-
-RoleAwareComponent.propTypes = {
-    authorize: PropTypes.array.isRequired
-};
-
 
 export default RoleAwareComponent;
