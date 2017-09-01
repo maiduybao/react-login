@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import request from "superagent";
 import "../css/login.scss";
 
+const API_URI = "https://localhost:8443/api";
+
 class Login extends Component {
 
     constructor(props) {
@@ -16,13 +18,6 @@ class Login extends Component {
         };
         this.handleInputChange = this.handleInputChange.bind(this);
     }
-
-    /*
-   componentWillUnmount() {
-
-   }
-   */
-
 
     handleInputChange(event) {
         const target = event.target;
@@ -38,7 +33,7 @@ class Login extends Component {
     handleLoginSubmit(event) {
         event.preventDefault();
         request
-            .post("//localhost:8080/api/authenticate")
+            .post(API_URI + "/authenticate")
             .send({
                 email: this.state.credentials.email,
                 password: this.state.credentials.password
@@ -46,7 +41,6 @@ class Login extends Component {
             .set("Accept", "application/json")
             .end((error, response) => {
                 if (error) {
-                    alert(JSON.stringify(error));
                     const errors = {summary: error.message};
                     this.setState({
                         errors
