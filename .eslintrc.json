@@ -44,7 +44,7 @@
             "error",
             "never"
         ],
-        "class-methods-use-this": "error",
+        "class-methods-use-this": "off",
         "comma-dangle": "error",
         "comma-spacing": [
             "error",
@@ -66,7 +66,7 @@
         "consistent-this": "error",
         "curly": "error",
         "default-case": "error",
-        "dot-location": "error",
+        "dot-location": "off",
         "dot-notation": "error",
         "eol-last": "off",
         "eqeqeq": "error",
@@ -152,7 +152,7 @@
         "no-lone-blocks": "error",
         "no-lonely-if": "error",
         "no-loop-func": "error",
-        "no-magic-numbers": "error",
+        "no-magic-numbers": "off",
         "no-mixed-operators": "error",
         "no-mixed-requires": "error",
         "no-multi-assign": "error",

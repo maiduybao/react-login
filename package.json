@@ -33,7 +33,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
-    "css-loader": "^0.28.5",
+    "css-loader": "^0.28.7",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-loader": "^1.9.0",
@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.4",
-    "npm": "^5.3.0",
+    "npm": "^5.4.0",
     "prop-types": "^15.5.10",
     "purecss-sass": "^1.0.0",
     "react": "^15.6.1",

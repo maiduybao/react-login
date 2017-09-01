@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import {Component} from "react";
+import PropTypes from "prop-types";
 import lodash from "lodash";
 
 class RoleAwareComponent extends Component {
@@ -10,10 +11,16 @@ class RoleAwareComponent extends Component {
     shouldBeVisible() {
         const authorizedUser = JSON.parse(sessionStorage.getItem("principle"));
         if (authorizedUser) {
-            return lodash.intersection(this.props.authorize, authorizedUser.role).length === 0;
+            return lodash.intersection(this.props.authorize, [authorizedUser.role]).length === 0;
         }
+
         return false;
     }
 }
+
+RoleAwareComponent.propTypes = {
+    authorize: PropTypes.array.isRequired,
+    history: PropTypes.object.isRequired
+};
 
 export default RoleAwareComponent;

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import request from "superagent";
 import "../css/login.scss";
 
@@ -35,10 +36,9 @@ class Login extends Component {
     }
 
     handleLoginSubmit(event) {
-        alert("handleLoginSubmit");
         event.preventDefault();
         request
-            .post("//localhost:3000/api/authenticate")
+            .post("//localhost:8080/api/authenticate")
             .send({
                 email: this.state.credentials.email,
                 password: this.state.credentials.password
@@ -46,13 +46,23 @@ class Login extends Component {
             .set("Accept", "application/json")
             .end((error, response) => {
                 if (error) {
+                    alert(JSON.stringify(error));
                     const errors = {summary: error.message};
                     this.setState({
                         errors
                     });
+                } else if (response.body.success === false) {
+                    const errors = {summary: response.body.message};
+                    this.setState({
+                        errors
+                    });
                 } else {
-                    alert(response.json());
+                    const {token, user} = response.body.payload;
+                    sessionStorage.setItem("access_token", token);
+                    sessionStorage.setItem("principle", JSON.stringify(user));
+                    this.props.history.push("/dashboard");
                 }
+
             });
     }
 
@@ -86,5 +96,9 @@ class Login extends Component {
         );
     }
 }
+
+Login.propTypes = {
+    history: PropTypes.object.isRequired
+};
 
 export default Login;
