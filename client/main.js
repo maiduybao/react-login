@@ -13,7 +13,7 @@ ReactDOM.render(
             <Route path="/" component={Login} exact={true}/>
             <Route path="/login" component={Login} exact={true}/>
             <Route path="/index" component={Login} exact={true}/>
-            <RestrictedRoute path="/dashboard" authorize={["Client"]} exact={true} component={Dashboard}/>
+            <RestrictedRoute path="/dashboard" authorize={["Client"]} component={Dashboard}/>
         </Switch>
     </BrowserRouter>,
     document.getElementById("app")

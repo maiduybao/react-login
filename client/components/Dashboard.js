@@ -1,5 +1,10 @@
 import React, {Component} from "react";
+import {Switch, Link, Route} from "react-router-dom";
+
 import "../css/dashboard.scss";
+
+const Home = () => <h2 className="content-subhead">Home</h2>;
+const About = () => <h2 className="content-subhead">About</h2>;
 
 class Dashboard extends Component {
     render() {
@@ -12,8 +17,12 @@ class Dashboard extends Component {
                     <div className="pure-menu">
                         <a className="pure-menu-heading" href="#">Company</a>
                         <ul className="pure-menu-list">
-                            <li className="pure-menu-item"><a href="#" className="pure-menu-link">Home</a></li>
-                            <li className="pure-menu-item"><a href="#" className="pure-menu-link">About</a></li>
+                            <li className="pure-menu-item">
+                                <Link to="/dashboard/home" className="pure-menu-link">Home</Link>
+                            </li>
+                            <li className="pure-menu-item">
+                                <Link to="/dashboard/about" className="pure-menu-link">About</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -23,17 +32,13 @@ class Dashboard extends Component {
                         <h2>A subtitle for your page goes here</h2>
                     </div>
                     <div className="content">
-                        <h2 className="content-subhead">How to use this layout</h2>
-                        <p>
-                            To use this layout, you can just copy paste the HTML, along with the CSS
-                        </p>
-                        <h2 className="content-subhead">Try Resizing your Browser</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+                        <Switch>
+                            <Route path="/dashboard/home" component={Home}/>
+                            <Route path="/dashboard/about" component={About}/>
+                        </Switch>
                     </div>
                 </div>
-                </div>
+            </div>
         );
     }
 }
