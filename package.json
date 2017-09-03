@@ -53,7 +53,6 @@
   "dependencies": {
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
-    "lodash.intersection": "^4.4.0",
     "npm": "^5.4.0",
     "prop-types": "^15.5.10",
     "purecss-sass": "^1.0.0",
