@@ -1,16 +1,17 @@
 import {Component} from "react";
 import PropTypes from "prop-types";
-import lodash from "lodash";
+import intersection from "lodash.intersection";
 
 class AuthorizedComponent extends Component {
     componentWillMount() {
         // check if user data available
         const authorizedUser = JSON.parse(sessionStorage.getItem("principle"));
+        console.log("authorizedUser", authorizedUser);
         if (!authorizedUser) {
             // redirect to login if not
             this.props.history.push("/login");
-        } else if (lodash.intersection(this.props.authorize, [authorizedUser.role]).length === 0) {
-            this.props.history.push("/not-authorized");
+        } else if (intersection(this.props.authorize, authorizedUser.roles).length === 0) {
+            this.props.history.push("/unauthorized");
         }
 
     }

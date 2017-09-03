@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import request from "superagent";
+import jwtDecode from "jwt-decode";
 import "../css/login.scss";
 
-const API_URI = "https://localhost:8443/api";
+const API_URI = "https://localhost:8443/api/user";
 
 class Login extends Component {
 
@@ -51,8 +52,15 @@ class Login extends Component {
                         errors
                     });
                 } else {
-                    const {token, user} = response.body.payload;
+                    const {token} = response.body.payload;
                     sessionStorage.setItem("access_token", token);
+                    const data = jwtDecode(token);
+                    console.log(data);
+                    const user = {
+                        id: data.sub,
+                        email: data.email,
+                        roles: data.roles
+                    };
                     sessionStorage.setItem("principle", JSON.stringify(user));
                     this.props.history.push("/dashboard");
                 }
