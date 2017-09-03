@@ -10,7 +10,9 @@ import "./css/main.scss";
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
-            <Route path={/\/|\/login/} component={Login}/>
+            <Route path="/" component={Login} exact={true}/>
+            <Route path="/login" component={Login} exact={true}/>
+            <Route path="/index" component={Login} exact={true}/>
             <RestrictedRoute path="/dashboard" authorize={["Client"]} exact={true} component={Dashboard}/>
         </Switch>
     </BrowserRouter>,

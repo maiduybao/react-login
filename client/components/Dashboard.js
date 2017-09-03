@@ -19,7 +19,7 @@ class Dashboard extends Component {
                 </div>
                 <div id="main">
                     <div className="header">
-                        <h1>Page Title</h1>
+                        <h1>Dashboard</h1>
                         <h2>A subtitle for your page goes here</h2>
                     </div>
                     <div className="content">
