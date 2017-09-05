@@ -37,10 +37,10 @@ class RestrictedRoute extends Route {
                     </div>
                 );
             } else {
-                return (<Redirect to="/unauthorized"/>);
+                return (<Redirect from="/dashboard" to="/unauthorized"/>);
             }
         }
-        return (<Redirect to="/login"/>);
+        return (<Redirect from="/dashboard" to="/login"/>);
 
     }
 
