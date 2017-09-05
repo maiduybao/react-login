@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import PageNotFound from "./components/PageNotFound";
 import RestrictedRoute from "./components/RestrictedRoute";
 
 import "./css/main.scss";
@@ -10,10 +11,10 @@ import "./css/main.scss";
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
-            <Route path="/" component={Login} exact={true}/>
-            <Route path="/login" component={Login} exact={true}/>
-            <Route path="/index" component={Login} exact={true}/>
+            <Route path="/" render={() => (<Redirect to="/dashboard"/>)} exact/>
+            <Route path="/login" component={Login}/>
             <RestrictedRoute path="/dashboard" authorize={["Client"]} component={Dashboard}/>
+            <Route component={PageNotFound}/>
         </Switch>
     </BrowserRouter>,
     document.getElementById("app")

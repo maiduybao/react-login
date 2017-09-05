@@ -18,10 +18,10 @@ class Dashboard extends Component {
                         <a className="pure-menu-heading" href="#">Company</a>
                         <ul className="pure-menu-list">
                             <li className="pure-menu-item">
-                                <Link to="/dashboard/home" className="pure-menu-link">Home</Link>
+                                <Link to={`${this.props.path}/home`} className="pure-menu-link">Home</Link>
                             </li>
                             <li className="pure-menu-item">
-                                <Link to="/dashboard/about" className="pure-menu-link">About</Link>
+                                <Link to={`${this.props.path}/about`} className="pure-menu-link">About</Link>
                             </li>
                         </ul>
                     </div>
@@ -33,8 +33,8 @@ class Dashboard extends Component {
                     </div>
                     <div className="content">
                         <Switch>
-                            <Route path="/dashboard/home" component={Home}/>
-                            <Route path="/dashboard/about" component={About}/>
+                            <Route path={`${this.props.path}/home`} component={Home}/>
+                            <Route path={`${this.props.path}/about`} component={About}/>
                         </Switch>
                     </div>
                 </div>
