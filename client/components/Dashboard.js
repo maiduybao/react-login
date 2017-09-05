@@ -9,6 +9,8 @@ const About = () => <h2 className="content-subhead">About</h2>;
 
 class Dashboard extends Component {
     render() {
+        const {computedMatch: match} = this.props;
+        console.log("Dashboard", this.props);
         return (
             <div id="layout">
                 <a href="#menu" id="menuLink" className="menu-link">
@@ -19,10 +21,10 @@ class Dashboard extends Component {
                         <a className="pure-menu-heading" href="#">Company</a>
                         <ul className="pure-menu-list">
                             <li className="pure-menu-item">
-                                <Link to="/dashboard/home" className="pure-menu-link">Home</Link>
+                                <Link to={`${match.url}/home`} className="pure-menu-link">Home</Link>
                             </li>
                             <li className="pure-menu-item">
-                                <Link to="/dashboard/about" className="pure-menu-link">About</Link>
+                                <Link to={`${match.url}/about`} className="pure-menu-link">About</Link>
                             </li>
                         </ul>
                     </div>
@@ -33,8 +35,8 @@ class Dashboard extends Component {
                         <h2>A subtitle for your page goes here</h2>
                     </div>
                     <div className="content">
-                            <Route key="dashboard/home" path="/dashboard/home" component={Home}/>
-                            <Route key="/dashboard/about" path="/dashboard/about" component={About}/>
+                        <Route path={`${match.url}/home`} component={Home}/>
+                        <Route path={`${match.url}/about`} component={About}/>
                     </div>
                 </div>
             </div>
