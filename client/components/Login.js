@@ -62,7 +62,9 @@ class Login extends Component {
                         roles: data.roles
                     };
                     sessionStorage.setItem("principle", JSON.stringify(user));
-                    this.props.history.push("/dashboard");
+                    console.log("handleLoginSubmit", this.props);
+                    const {from} = this.props.location.state || {from: {pathname: "/dashboard"}};
+                    this.props.history.push(from);
                 }
 
             });

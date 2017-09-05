@@ -41,7 +41,12 @@ class RestrictedRoute extends Route {
                 return (<Redirect to="/unauthorized"/>);
             }
         }
-        return (<Redirect to="/login"/>);
+        return (<Redirect to={
+            {
+                pathname: "/login",
+                state: {from: rest.location}
+            }
+        }/>);
 
     }
 
