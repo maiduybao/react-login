@@ -21,6 +21,7 @@ class RestrictedRoute extends Route {
 
     render() {
         const {component: Component, ...rest} = this.props;
+        console.log("RestrictedRoute", this.props);
         if (RestrictedRoute.isLogin()) {
             if (this.isAuthorized()) {
                 if (Component) {
@@ -37,10 +38,10 @@ class RestrictedRoute extends Route {
                     </div>
                 );
             } else {
-                return (<Redirect from="/dashboard" to="/unauthorized"/>);
+                return (<Redirect to="/unauthorized"/>);
             }
         }
-        return (<Redirect from="/dashboard" to="/login"/>);
+        return (<Redirect to="/login"/>);
 
     }
 
