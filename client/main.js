@@ -14,7 +14,8 @@ ReactDOM.render(
             <Route path="/" render={() => (<Redirect to="/dashboard"/>)} exact/>
             <Route path="/login" component={Login}/>
             <RestrictedRoute path="/dashboard" authorize={["Client"]} component={Dashboard}/>
-            <Route component={PageNotFound}/>
+            <Route path="/404" component={PageNotFound}/>
+            <Route render={() => (<Redirect to="/404"/>)}/>
         </Switch>
     </BrowserRouter>,
     document.getElementById("app")
