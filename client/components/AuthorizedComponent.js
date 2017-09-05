@@ -3,17 +3,31 @@ import PropTypes from "prop-types";
 import intersection from "lodash/intersection";
 
 class AuthorizedComponent extends Component {
-    componentWillMount() {
-        // check if user data available
-        const authorizedUser = JSON.parse(sessionStorage.getItem("principle"));
-        console.log("authorizedUser", authorizedUser);
-        if (!authorizedUser) {
-            // redirect to login if not
-            this.props.history.push("/login");
-        } else if (intersection(this.props.authorize, authorizedUser.roles).length === 0) {
-            this.props.history.push("/unauthorized");
-        }
 
+    static isLogin() {
+        const token = sessionStorage.getItem("access_token");
+        return token !== null;
+    }
+
+    isAuthorized() {
+        const principleStr = sessionStorage.getItem("principle");
+        if (principleStr) {
+            const authorizedUser = JSON.parse(principleStr);
+            return intersection(this.props.authorize, authorizedUser.roles).length !== 0;
+        }
+        return false;
+    }
+
+    componentWillMount() {
+        if (AuthorizedComponent.isLogin()) {
+            if (!this.isAuthorized()) {
+                // redirect to unauthorized
+                this.props.history.push("/unauthorized");
+            }
+        } else {
+            // redirect to login
+            this.props.history.push("/login");
+        }
     }
 }
 
