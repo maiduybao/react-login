@@ -21,10 +21,10 @@ class Dashboard extends Component {
                         <a className="pure-menu-heading" href="#">Company</a>
                         <ul className="pure-menu-list">
                             <li className="pure-menu-item">
-                                <Link to={`${match.url}/home`} className="pure-menu-link">Home</Link>
+                                <Link to={`${match.url}/home`} className="pure-menu-link" replace>Home</Link>
                             </li>
                             <li className="pure-menu-item">
-                                <Link to={`${match.url}/about`} className="pure-menu-link">About</Link>
+                                <Link to={`${match.url}/about`} className="pure-menu-link" replace>About</Link>
                             </li>
                         </ul>
                     </div>
@@ -35,8 +35,10 @@ class Dashboard extends Component {
                         <h2>A subtitle for your page goes here</h2>
                     </div>
                     <div className="content">
-                        <Route path={`${match.url}/home`} component={Home}/>
-                        <Route path={`${match.url}/about`} component={About}/>
+                        <Switch>
+                            <Route path={`${match.url}/home`} component={Home}/>
+                            <Route path={`${match.url}/about`} component={About}/>
+                        </Switch>
                     </div>
                 </div>
             </div>
