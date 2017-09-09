@@ -32,11 +32,10 @@ module.exports = {
                 exclude: [path.resolve(__dirname, "/node_modules/")],
                 options: {
                     presets: [
-                        "react",
                         "es2015",
+                        "react",
                         "stage-2"
-                    ],
-                    compact: false
+                    ]
                 }
             },
             {
