@@ -14,6 +14,7 @@ class RoleAwareComponent extends Component {
             const authorizedUser = JSON.parse(principleStr);
             return intersection(this.props.authorize, authorizedUser.roles).length !== 0;
         }
+
         return false;
     }
 

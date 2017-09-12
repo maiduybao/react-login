@@ -1,16 +1,13 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {Switch, Link, Route} from "react-router-dom";
-
 import "../css/dashboard.scss";
 
 const Home = () => <h2 className="content-subhead">Home</h2>;
 const About = () => <h2 className="content-subhead">About</h2>;
-
-
 class Dashboard extends Component {
     render() {
         const {computedMatch: match} = this.props;
-        console.log("Dashboard", this.props);
         return (
             <div id="layout">
                 <a href="#menu" id="menuLink" className="menu-link">
@@ -45,5 +42,9 @@ class Dashboard extends Component {
         );
     }
 }
+
+Dashboard.propTypes = {
+    computedMatch: PropTypes.object.isRequired
+};
 
 export default Dashboard;

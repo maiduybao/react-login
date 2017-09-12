@@ -1,23 +1,31 @@
-const SET_LOGIN_PENDING = 'SET_LOGIN_PENDING';
-const SET_LOGIN_SUCCESS = 'SET_LOGIN_SUCCESS';
-const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR';
-
-const defaultState = {
+const initialState = {
     isLoginSuccess: false,
     isLoginPending: false,
     loginError: null
 };
-export default function reducer(state = defaultState, action) {
+export default function reducer(state = initialState, action) {
     switch (action.type) {
         case "LOGIN_PENDING":
-            state = {...state, isLoginPending: action.payload}; // create new state
+            state = {
+                ...state,
+                isLoginPending: action.payload
+            };
             break;
-        case "LOGIN_SUCCESS":
-            state = {...state, isLoginSuccess: action.payload};
+        case "LOGIN_FULFILLED":
+            state = {
+                ...state,
+                isLoginSuccess: action.payload
+            };
             break;
-        case "LOGIN_ERROR":
-            state = {...state, loginError: action.payload};
+        case "LOGIN_REJECTED":
+            state = {
+                ...state,
+                loginError: action.payload
+            };
             break;
+        default:
+            state = {...state};
     }
+
     return state;
 }

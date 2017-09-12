@@ -35,6 +35,10 @@ module.exports = {
                         "es2015",
                         "react",
                         "stage-2"
+                    ],
+                    plugins: [
+                        "transform-decorators-legacy",
+                        "transform-class-properties"
                     ]
                 }
             },

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {Route, Redirect} from "react-router-dom";
 import intersection from "lodash/intersection";
@@ -16,24 +16,27 @@ class RestrictedRoute extends Route {
             const authorizedUser = JSON.parse(principleStr);
             return intersection(this.props.authorize, authorizedUser.roles).length !== 0;
         }
+
         return false;
     }
 
     render() {
-        const {component: Component, ...rest} = this.props;
+        const {component: AuthComponent, ...rest} = this.props;
         if (RestrictedRoute.isLogin()) {
             if (this.isAuthorized()) {
-                return (<Component {...rest} />);
-            } else {
-                return (<Redirect to="/unauthorized"/>);
+                return <AuthComponent {...rest} />;
             }
+
+            return <Redirect to="/unauthorized"/>;
+
         }
-        return (<Redirect to={
-            {
-                pathname: "/login",
-                state: {from: rest.location}
-            }
-        }/>);
+
+        return <Redirect to={
+        {
+            pathname: "/login",
+            state: {from: rest.location}
+        }
+        }/>;
 
     }
 
@@ -42,6 +45,5 @@ class RestrictedRoute extends Route {
 RestrictedRoute.propTypes = {
     authorize: PropTypes.array.isRequired
 };
-
 
 export default RestrictedRoute;
