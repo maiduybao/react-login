@@ -10,7 +10,6 @@ class LoginPage extends Component {
     render() {
         return (
             <div className="container">
-                <h2>Login to Your Account</h2>
                 <LoginForm history={this.props.history} location={this.props.location}/>
                 <RegisterLink/>
             </div>

@@ -1,0 +1,22 @@
+@import "~bootstrap-v4-dev/scss/variables";
+
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
+.not-found-container {
+  max-width: 600px;
+  padding: 15px;
+  margin: 0 auto;
+  text-align: center;
+
+  i.fa-frown-o, i.fa-ban, i.fa-fire {
+    color: $alert-danger-text;
+  }
+  i.fa-clock-o, i.fa-exclamation-triangle {
+    color: $alert-warning-text;
+  }
+
+}

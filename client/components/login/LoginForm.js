@@ -42,34 +42,34 @@ class LoginForm extends Component {
         });
     }
 
-
     render() {
         const {credentials} = this.state;
         const {isLoginPending, loginError} = this.props;
         return (
-
-            <div>
+            <form className="form-signin" onSubmit={this.handleLoginSubmit}>
+                <h2 className="form-signin-heading">Please sign in</h2>
                 {loginError ?
-                    <div className="alert">{loginError}</div> : null
+                    <div className="alert-danger">{loginError}</div> : null
                 }
-                <form className="pure-form pure-form-aligned" onSubmit={this.handleLoginSubmit}>
-                    <fieldset>
-                        <div className="pure-control-group">
-                            <input id="email" name="email" type="text" placeholder="Email"
-                                   value={credentials.email || ""} onChange={this.handleInputChange}/>
-                            <i className="fa fa-envelope-o" aria-hidden="true"/>
-                        </div>
-                        <div className="pure-control-group">
-                            <input id="password" name="password" type="password" placeholder="Password"
-                                   value={credentials.password || ""} onChange={this.handleInputChange}/>
-                            <i className="fa fa-key" aria-hidden="true"/>
-                        </div>
-                        <div className="pure-control-group">
-                            <Button bsStyle="primary" type="submit" disabled={isLoginPending}>Login</Button>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
+                <label htmlFor="email" className="sr-only">Email address</label>
+                <input type="email" id="email" name="email" className="form-control"
+                       placeholder="Email address" required="true" minLength="3"
+                       autoFocus onChange={this.handleInputChange} value={credentials.email || ""}/>
+                <label htmlFor="password" className="sr-only">Password</label>
+                <input type="password" id="password" name="password" className="form-control" placeholder="Password"
+                       required="true" onChange={this.handleInputChange} value={credentials.password || ""}
+                       minLength="6" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                       title="Enter a password consisting of 6-12 characters with uppercase, lowercase, and number"
+                       autoComplete="false"/>
+                <div className="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"/> Remember me
+                    </label>
+                </div>
+                <Button type="submit" disabled={isLoginPending} block={true} bsSize="large"
+                        bsStyle="primary">Sign in
+                </Button>
+            </form>
         );
     }
 }
