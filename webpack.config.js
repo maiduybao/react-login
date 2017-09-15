@@ -53,8 +53,7 @@ module.exports = {
                 exclude: [path.resolve(__dirname, "/node_modules/")],
                 options: {
                     name: "[name].[ext]",
-                    outputPath: "img/",
-                    publicPath: "img/"
+                    outputPath: "img/"
                 }
             },
             {
@@ -67,9 +66,17 @@ module.exports = {
                     fallback: "style-loader"
                 }),
                 exclude: [path.resolve(__dirname, "/node_modules/")]
+            },
+            {
+                test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                loader: "file-loader",
+                exclude: [path.resolve(__dirname, "/node_modules/")],
+                options: {
+                    name: "[name].[ext]",
+                    outputPath: "fonts/"
+                }
             }
         ]
-
     },
     plugins: [
         new Webpack.DefinePlugin({

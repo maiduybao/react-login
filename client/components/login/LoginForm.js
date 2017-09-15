@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import login from "../../actions/login";
+import {Button} from "react-bootstrap";
 
 
 class LoginForm extends Component {
@@ -56,15 +57,15 @@ class LoginForm extends Component {
                         <div className="pure-control-group">
                             <input id="email" name="email" type="text" placeholder="Email"
                                    value={credentials.email || ""} onChange={this.handleInputChange}/>
+                            <i className="fa fa-envelope-o" aria-hidden="true"/>
                         </div>
                         <div className="pure-control-group">
                             <input id="password" name="password" type="password" placeholder="Password"
                                    value={credentials.password || ""} onChange={this.handleInputChange}/>
+                            <i className="fa fa-key" aria-hidden="true"/>
                         </div>
                         <div className="pure-control-group">
-                            <button type="submit" name="login" className="pure-button pure-button-primary"
-                                    disabled={isLoginPending}>Login
-                            </button>
+                            <Button bsStyle="primary" type="submit" disabled={isLoginPending}>Login</Button>
                         </div>
                     </fieldset>
                 </form>
