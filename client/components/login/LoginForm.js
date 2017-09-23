@@ -57,7 +57,7 @@ class LoginForm extends Component {
                 <label htmlFor="email" className="sr-only">Email address</label>
                 <input type="email" id="email" name="email" className="form-control"
                        placeholder="Email address" required minLength="3"
-                       autoFocus onChange={this.handleInputChange} value={credentials.email || ""}
+                       onChange={this.handleInputChange} value={credentials.email || ""}
                        title="Enter your email"/>
                 <label htmlFor="password" className="sr-only">Password</label>
                 <input type="password" id="password" name="password" className="form-control" placeholder="Password"
