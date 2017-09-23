@@ -36,7 +36,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
     "css-loader": "^0.28.7",
-    "eslint": "^4.6.1",
+    "eslint": "^4.7.2",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.7.0",
@@ -53,13 +53,11 @@
     "webpack-dev-server": "^2.8.2"
   },
   "dependencies": {
-    "axios": "^0.16.2",
     "bootstrap-v4-dev": "^4.0.0-alpha.6",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
-    "purecss-sass": "^1.0.0",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^15.6.1",

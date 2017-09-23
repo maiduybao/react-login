@@ -5,7 +5,7 @@ import "../../css/errors.scss";
 class Error403 extends Component {
     render() {
         return (
-            <div className="not-found-container">
+            <div className="error-container">
                 <div>You do not have access permissions for that</div>
                 <h1>
                     <i className="fa fa-ban" aria-hidden="true"/>

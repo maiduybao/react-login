@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import {Redirect} from "react-router-dom";
+import {ACCESS_TOKEN} from "./common/constants";
+
 
 class Logout extends Component {
 
     componentWillMount() {
-        sessionStorage.removeItem("principle");
-        sessionStorage.removeItem("access_token");
+        sessionStorage.removeItem(ACCESS_TOKEN);
     }
 
     render() {

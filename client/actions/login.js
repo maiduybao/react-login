@@ -1,24 +1,26 @@
-import axios from "axios";
-import jwtDecode from "jwt-decode";
+import {LOGIN_PENDING, LOGIN_FULFILLED, LOGIN_REJECTED} from "./types";
+import {ACCESS_TOKEN} from "../components/common/constants";
 
-const API_URI = "https://localhost:8443/api/user";
+const API_URI = "http://localhost:8080/api/v1";
+const logger = console;
+
 function setLoginPending(isLoginPending) {
     return {
-        type: "LOGIN_PENDING",
+        type: LOGIN_PENDING,
         payload: isLoginPending
     };
 }
 
 function setLoginSuccess(isLoginSuccess) {
     return {
-        type: "LOGIN_FULFILLED",
+        type: LOGIN_FULFILLED,
         payload: isLoginSuccess
     };
 }
 
 function setLoginError(loginError) {
     return {
-        type: "LOGIN_REJECTED",
+        type: LOGIN_REJECTED,
         payload: loginError
     };
 }
@@ -29,27 +31,31 @@ export default function login(credentials) {
         dispatch(setLoginSuccess(false));
         dispatch(setLoginError(null));
 
-        return axios.post(API_URI + "/authenticate", credentials)
-            .then((res) => {
-                const {data} = res;
-                dispatch(setLoginPending(false));
-                if (data.success === false) {
-                    dispatch(setLoginError(data.error));
-                    return false;
-                }
-                dispatch(setLoginSuccess(true));
-                const {token} = data.payload;
-                sessionStorage.setItem("access_token", token);
-                const tokenData = jwtDecode(token);
-                const {user} = tokenData;
-                sessionStorage.setItem("principle", JSON.stringify(user));
-                return true;
-            })
-            .catch((err) => {
-                dispatch(setLoginError("Login API is not available"));
-                dispatch(setLoginPending(false));
-                throw err;
-            });
+        return fetch(API_URI + "/authenticate", {
+            method: "post",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(credentials)
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            const {error, accessToken} = data;
+            dispatch(setLoginPending(false));
+            if (error) {
+                dispatch(setLoginError(error.message));
+                return false;
+            }
+            dispatch(setLoginSuccess(true));
+            sessionStorage.setItem(ACCESS_TOKEN, accessToken || "");
+            return true;
+        })
+        .catch((ex) => {
+            logger.error(ex.message);
+            dispatch(setLoginError("Could not connect to the server"));
+            dispatch(setLoginPending(false));
+        });
     };
 }
 

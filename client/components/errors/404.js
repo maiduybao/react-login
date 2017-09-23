@@ -5,7 +5,7 @@ import "../../css/errors.scss";
 class Error404 extends Component {
     render() {
         return (
-            <div className="not-found-container">
+            <div className="error-container">
                 <div>The page you are looking for can not be found</div>
                 <h1>
                     <i className="fa fa-frown-o" aria-hidden="true"/>

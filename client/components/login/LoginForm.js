@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import login from "../../actions/login";
 import {Button} from "react-bootstrap";
+import RegisterLink from "./RegisterLink";
 
 
 class LoginForm extends Component {
@@ -46,29 +47,30 @@ class LoginForm extends Component {
         const {credentials} = this.state;
         const {isLoginPending, loginError} = this.props;
         return (
-            <form className="form-signin" onSubmit={this.handleLoginSubmit}>
-                <h2 className="form-signin-heading">Please sign in</h2>
+            <form id="form-login" onSubmit={this.handleLoginSubmit}>
+                <h2 className="heading">Please sign in</h2>
                 {loginError ?
-                    <div className="alert-danger">{loginError}</div> : null
+                    <div className="alert-danger">
+                        <i className="fa fa-exclamation-circle" aria-hidden="true"/> {loginError}
+                    </div> : null
                 }
                 <label htmlFor="email" className="sr-only">Email address</label>
                 <input type="email" id="email" name="email" className="form-control"
-                       placeholder="Email address" required="true" minLength="3"
-                       autoFocus onChange={this.handleInputChange} value={credentials.email || ""}/>
+                       placeholder="Email address" required minLength="3"
+                       autoFocus onChange={this.handleInputChange} value={credentials.email || ""}
+                       title="Enter your email"/>
                 <label htmlFor="password" className="sr-only">Password</label>
                 <input type="password" id="password" name="password" className="form-control" placeholder="Password"
-                       required="true" onChange={this.handleInputChange} value={credentials.password || ""}
+                       required onChange={this.handleInputChange} value={credentials.password || ""}
                        minLength="6" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
                        title="Enter a password consisting of 6-12 characters with uppercase, lowercase, and number"
                        autoComplete="false"/>
-                <div className="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"/> Remember me
-                    </label>
-                </div>
-                <Button type="submit" disabled={isLoginPending} block={true} bsSize="large"
-                        bsStyle="primary">Sign in
+                <Button type="submit" disabled={isLoginPending} block={true} bsSize="large" bsStyle="primary">Sign in
                 </Button>
+
+                <div className="register">
+                    <RegisterLink/>
+                </div>
             </form>
         );
     }

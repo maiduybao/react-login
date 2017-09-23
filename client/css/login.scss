@@ -1,21 +1,28 @@
+@import "~bootstrap-v4-dev/scss/variables";
+
 body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
 }
 
-.form-signin {
+#form-login {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
 
-  .form-signin-heading,
-  .checkbox {
+  .heading {
     margin-bottom: 10px;
   }
 
-  .checkbox {
+  .register {
+    margin-top: 10px;
     font-weight: normal;
+    font-size: small;
+
+    .nav-link {
+      padding: 0;
+    }
   }
 
   .form-control {
@@ -44,7 +51,22 @@ body {
   }
 
   .alert-danger {
-    background: none;
     margin-bottom: 10px;
+    font-size: small;
+    background: none;
   }
+
+  // When input is...
+  //   1. NOT empty
+  //   2. NOT in focus
+  //   3. NOT valid
+  input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: $alert-danger-text;
+  }
+
+  // When that invalid input becomes in focus (and also still isn't empty)
+  input:invalid:focus:not(:placeholder-shown) {
+    border-color: $alert-danger-text;
+  }
+
 }

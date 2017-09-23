@@ -1,41 +1,64 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Route, Redirect} from "react-router-dom";
-import intersection from "lodash/intersection";
+import {intersection} from "lodash";
+import {ACCESS_TOKEN} from "./common/constants";
+import jwtDecode from "jwt-decode";
+
+const logger = console;
 
 class RestrictedRoute extends Route {
 
     static isLogin() {
-        const token = sessionStorage.getItem("access_token");
-        return token !== null;
+        const token = sessionStorage.getItem(ACCESS_TOKEN);
+        if (token !== null) {
+            try {
+                const tokenData = jwtDecode(token);
+                // expired in second
+                let {exp} = tokenData;
+                exp *= 1000;
+                const now = new Date();
+                if (exp > now.getTime()) {
+                    return true;
+                }
+            } catch (error) {
+                logger.error(error);
+                sessionStorage.removeItem(ACCESS_TOKEN);
+            }
+        }
+        return false;
     }
 
     isAuthorized() {
-        const principleStr = sessionStorage.getItem("principle");
-        if (principleStr) {
-            const authorizedUser = JSON.parse(principleStr);
-            return intersection(this.props.authorize, authorizedUser.roles).length !== 0;
+        const token = sessionStorage.getItem(ACCESS_TOKEN);
+        try {
+            const tokenData = jwtDecode(token);
+            const {user} = tokenData;
+            if (user) {
+                const {roles} = user;
+                return intersection(this.props.authorize, roles).length !== 0;
+            }
+        } catch (error) {
+            logger.error(error);
+            sessionStorage.removeItem(ACCESS_TOKEN);
         }
-
         return false;
     }
 
     render() {
-        const {component: AuthComponent, ...rest} = this.props;
+        const {component: AuthorizedComponent, ...rest} = this.props;
         if (RestrictedRoute.isLogin()) {
             if (this.isAuthorized()) {
-                return <AuthComponent {...rest} />;
+                return <AuthorizedComponent {...rest} />;
             }
-
-            return <Redirect to="/unauthorized"/>;
-
+            return <Redirect to="/403"/>;
         }
 
         return <Redirect to={
-        {
-            pathname: "/login",
-            state: {from: rest.location}
-        }
+            {
+                pathname: "/login",
+                state: {from: rest.location}
+            }
         }/>;
 
     }
