@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import LoginForm from "./LoginForm";
-
-
 import "../../css/login.scss";
 
 class Login extends Component {

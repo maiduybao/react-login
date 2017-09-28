@@ -65,7 +65,8 @@ class LoginForm extends Component {
                        minLength="6" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
                        title="Enter a password consisting of 6-12 characters with uppercase, lowercase, and number"
                        autoComplete="false"/>
-                <Button type="submit" disabled={isLoginPending} block={true} bsSize="large" bsStyle="primary">Sign in
+                <Button type="submit" disabled={isLoginPending} block={true} bsSize="large" bsStyle="primary">
+                    Sign in
                 </Button>
 
                 <div className="register">

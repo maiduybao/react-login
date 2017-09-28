@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Route, Redirect} from "react-router-dom";
-import {intersection} from "lodash";
+import intersection from "lodash/intersection";
 import {ACCESS_TOKEN} from "./common/constants";
 import jwtDecode from "jwt-decode";
 

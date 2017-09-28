@@ -6,11 +6,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const extractSass = new ExtractTextPlugin({
-    filename: "main_[hash].css"
-});
-
-
 const PROJECT_PATHS = {
     app: path.join(__dirname, "client"),
     build: path.join(__dirname, "dist")
@@ -48,33 +43,28 @@ module.exports = {
                 exclude: [path.resolve(__dirname, "/node_modules/")]
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/,
-                loader: "file-loader",
-                exclude: [path.resolve(__dirname, "/node_modules/")],
-                options: {
-                    name: "[name].[ext]",
-                    outputPath: "img/"
-                }
-            },
-            {
                 test: /\.(scss|sass)$/,
-                use: extractSass.extract({
+                use: ExtractTextPlugin.extract({
                     use: [
-                        "css-loader",
-                        "sass-loader"
+                        {
+                            loader: "css-loader",
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: true
+                            }
+                        }
                     ],
                     fallback: "style-loader"
-                }),
-                exclude: [path.resolve(__dirname, "/node_modules/")]
+                })
             },
             {
-                test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-                loader: "file-loader",
-                exclude: [path.resolve(__dirname, "/node_modules/")],
-                options: {
-                    name: "[name].[ext]",
-                    outputPath: "fonts/"
-                }
+                test: /\.(jpe?g|png|gif|ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                loader: "file-loader"
             }
         ]
     },
@@ -82,7 +72,9 @@ module.exports = {
         new Webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
         }),
-        extractSass,
+        new ExtractTextPlugin({
+            filename: "main_[hash].css"
+        }),
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: path.join(PROJECT_PATHS.app, "index.html")
