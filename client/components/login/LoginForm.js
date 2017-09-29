@@ -47,20 +47,20 @@ class LoginForm extends Component {
         const {credentials} = this.state;
         const {isLoginPending, loginError} = this.props;
         return (
-            <form id="form-login" onSubmit={this.handleLoginSubmit}>
-                <h2 className="heading">Please sign in</h2>
+            <form id="form-login" className="page-login" onSubmit={this.handleLoginSubmit}>
+                <h2 className="page-login__header">Please sign in</h2>
                 {loginError ?
-                    <div className="alert-danger">
+                    <div className="alert-danger page-login__alert">
                         <i className="fa fa-exclamation-circle" aria-hidden="true"/> {loginError}
                     </div> : null
                 }
                 <label htmlFor="email" className="sr-only">Email address</label>
-                <input type="email" id="email" name="email" className="form-control"
+                <input type="email" id="email" name="email" className="form-control page-login__form-control"
                        placeholder="Email address" required minLength="3"
                        onChange={this.handleInputChange} value={credentials.email || ""}
                        title="Enter your email"/>
                 <label htmlFor="password" className="sr-only">Password</label>
-                <input type="password" id="password" name="password" className="form-control" placeholder="Password"
+                <input type="password" id="password" name="password" className="form-control page-login__form-control" placeholder="Password"
                        required onChange={this.handleInputChange} value={credentials.password || ""}
                        minLength="6" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
                        title="Enter a password consisting of 6-12 characters with uppercase, lowercase, and number"
@@ -69,7 +69,7 @@ class LoginForm extends Component {
                     Sign in
                 </Button>
 
-                <div className="register">
+                <div className="page-login__register-link">
                     <RegisterLink/>
                 </div>
             </form>
