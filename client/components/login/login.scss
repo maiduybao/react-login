@@ -1,9 +1,4 @@
 @import "~bootstrap-v4-dev/scss/variables";
-@import "~bootstrap-v4-dev/scss/mixins";
-@import "~bootstrap-v4-dev/scss/custom";
-
-@import "~bootstrap-v4-dev/scss/alert";
-@import "~bootstrap-v4-dev/scss/forms";
 
 .page-login {
   max-width: 330px;
@@ -30,7 +25,7 @@
   &__alert {
     margin-bottom: 10px;
     font-size: 14px;
-    background: none;
+    background: none !important;
   }
 
   &__register-link {
@@ -40,18 +35,6 @@
     &__nav-link {
       padding-left: 0 !important;
     }
-  }
-
-  input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
   }
 
   // When input is...
