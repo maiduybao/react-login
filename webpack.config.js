@@ -27,7 +27,11 @@ module.exports = {
                 exclude: [path.resolve(__dirname, "/node_modules/")],
                 options: {
                     presets: [
-                        "es2015",
+                        ["env", {
+                            "targets": {
+                                "browsers": ["last 2 versions"]
+                            }
+                        }],
                         "react",
                         "stage-3"
                     ],
