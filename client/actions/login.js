@@ -1,7 +1,6 @@
 import {LOGIN_PENDING, LOGIN_FULFILLED, LOGIN_REJECTED} from "./types";
-import {ACCESS_TOKEN} from "../components/common/constants";
+import {ACCESS_TOKEN, BASE_API_URI} from "../components/common/constants";
 
-const API_URI = "http://localhost:8080/api/v1";
 const logger = console;
 
 function setLoginPending(isLoginPending) {
@@ -31,7 +30,7 @@ export default function login(credentials) {
         dispatch(setLoginSuccess(false));
         dispatch(setLoginError(null));
 
-        return fetch(API_URI + "/authenticate", {
+        return fetch(BASE_API_URI + "/authenticate", {
             method: "post",
             headers: {
                 Accept: "application/json",
