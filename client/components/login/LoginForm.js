@@ -7,15 +7,15 @@ import {Button} from "react-bootstrap";
 import RegisterLink from "./RegisterLink";
 
 const PasswordInput = styled.input`
-margin-bottom: 10px;
-border-top-left-radius: 0;
-border-top-right-radius: 0;
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 `;
 
 const EmailInput = styled.input`
-margin-bottom: -1px;
-border-bottom-right-radius: 0;
-border-bottom-left-radius: 0;
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 `;
 
 class LoginForm extends Component {
