@@ -1,10 +1,7 @@
 import React, {Component} from "react";
-import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import login from "../../actions/login";
 import {Button} from "react-bootstrap";
-import RegisterLink from "./RegisterLink";
 
 const PasswordInput = styled.input`
     margin-bottom: 10px;
@@ -23,7 +20,6 @@ class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: {},
             credentials: {
                 email: "",
                 password: ""
@@ -46,20 +42,14 @@ class LoginForm extends Component {
 
     handleLoginSubmit(event) {
         event.preventDefault();
-        this.props.login(this.state.credentials)
-        .then((redirect) => {
-            if (redirect) {
-                const {from} = this.props.location.state || {from: {pathname: "/dashboard"}};
-                this.props.history.push(from);
-            }
-        });
+        this.props.doLogin(this.state.credentials);
     }
 
     render() {
         const {credentials} = this.state;
         const {isLoginPending, loginError} = this.props;
         return (
-            <form id="form-login" className="page-login" onSubmit={this.handleLoginSubmit}>
+            <form id="form-login" onSubmit={this.handleLoginSubmit}>
                 <h2 className="page-login__header">Please sign in</h2>
                 {loginError ?
                     <div className="alert-danger page-login__alert">
@@ -68,40 +58,28 @@ class LoginForm extends Component {
                 }
                 <label htmlFor="email" className="sr-only">Email address</label>
                 <EmailInput type="email" id="email" name="email" className="form-control page-login__form-control"
-                       placeholder="Email address" required minLength="3"
-                       onChange={this.handleInputChange} value={credentials.email || ""}
-                       title="Enter your email"/>
+                            placeholder="Email address" required minLength="3"
+                            onChange={this.handleInputChange} value={credentials.email || ""}
+                            title="Enter your email"/>
                 <label htmlFor="password" className="sr-only">Password</label>
-                <PasswordInput type="password" id="password" name="password" className="form-control page-login__form-control" placeholder="Password"
-                       required onChange={this.handleInputChange} value={credentials.password || ""}
-                       minLength="6" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
-                       title="Enter a password consisting of 6-12 characters with uppercase, lowercase, and number"
-                       autoComplete="false"/>
+                <PasswordInput type="password" id="password" name="password"
+                               className="form-control page-login__form-control" placeholder="Password"
+                               required onChange={this.handleInputChange} value={credentials.password || ""}
+                               minLength="6" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                               title="Enter a password consisting of 6-12 characters with uppercase, lowercase, and number"
+                               autoComplete="false"/>
                 <Button type="submit" disabled={isLoginPending} block={true} bsSize="large" bsStyle="primary">
                     Sign in
                 </Button>
-
-                <div className="page-login__register-link">
-                    <RegisterLink/>
-                </div>
             </form>
         );
     }
 }
 
 LoginForm.propTypes = {
-    history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    login: PropTypes.func,
-    isLoginPending: PropTypes.bool,
-    isLoginSuccess: PropTypes.bool,
-    loginError: PropTypes.string
+    isLoginPending: PropTypes.bool.isRequired,
+    loginError: PropTypes.string,
+    doLogin: PropTypes.func
 };
 
-const mapStateToProps = (state) => ({
-    isLoginPending: state.login.isLoginPending,
-    isLoginSuccess: state.login.isLoginSuccess,
-    loginError: state.login.loginError
-});
-
-export default connect(mapStateToProps, {login})(LoginForm);
+export default LoginForm;

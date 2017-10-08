@@ -51,9 +51,9 @@ export default function login(credentials) {
             return true;
         })
         .catch((ex) => {
-            logger.error(ex.message);
-            dispatch(setLoginError("Could not connect to the server"));
+            logger.error(ex);
             dispatch(setLoginPending(false));
+            dispatch(setLoginError("Could not connect to the server"));
         });
     };
 }
