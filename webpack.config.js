@@ -12,7 +12,7 @@ const PROJECT_PATHS = {
 };
 module.exports = {
     devtool: "inline-source-map",
-    entry: [path.join(PROJECT_PATHS.app, "main.js")],
+    entry: [path.join(PROJECT_PATHS.app, "index.js")],
     output: {
         path: path.resolve(__dirname, "dist"),
         //    filename: 'bundle.js'
