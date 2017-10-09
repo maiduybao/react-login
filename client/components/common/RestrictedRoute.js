@@ -6,11 +6,12 @@ import {ACCESS_TOKEN} from "./constants";
 import jwtDecode from "jwt-decode";
 
 const logger = console;
+const storage = localStorage;
 
 class RestrictedRoute extends Route {
 
     static isLogin() {
-        const token = sessionStorage.getItem(ACCESS_TOKEN);
+        const token = storage.getItem(ACCESS_TOKEN);
         if (token !== null) {
             try {
                 const tokenData = jwtDecode(token);
@@ -23,14 +24,14 @@ class RestrictedRoute extends Route {
                 }
             } catch (error) {
                 logger.error(error);
-                sessionStorage.removeItem(ACCESS_TOKEN);
+                storage.removeItem(ACCESS_TOKEN);
             }
         }
         return false;
     }
 
     isAuthorized() {
-        const token = sessionStorage.getItem(ACCESS_TOKEN);
+        const token = storage.getItem(ACCESS_TOKEN);
         try {
             const tokenData = jwtDecode(token);
             const {user} = tokenData;
@@ -40,7 +41,7 @@ class RestrictedRoute extends Route {
             }
         } catch (error) {
             logger.error(error);
-            sessionStorage.removeItem(ACCESS_TOKEN);
+            storage.removeItem(ACCESS_TOKEN);
         }
         return false;
     }

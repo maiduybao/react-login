@@ -47,7 +47,7 @@ export default function login(credentials) {
                 return false;
             }
             dispatch(setLoginSuccess(true));
-            sessionStorage.setItem(ACCESS_TOKEN, accessToken || "");
+            localStorage.setItem(ACCESS_TOKEN, accessToken || "");
             return true;
         })
         .catch((ex) => {

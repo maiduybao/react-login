@@ -6,7 +6,7 @@ import {ACCESS_TOKEN} from "./common/constants";
 class Logout extends Component {
 
     componentWillMount() {
-        sessionStorage.removeItem(ACCESS_TOKEN);
+        localStorage.removeItem(ACCESS_TOKEN);
     }
 
     render() {
