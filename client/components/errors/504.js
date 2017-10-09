@@ -1,4 +1,5 @@
 import React from "react";
+import {withRouter} from "react-router-dom";
 import "./error.scss";
 
 const Error504 = () => (
@@ -10,4 +11,4 @@ const Error504 = () => (
         </h1>
     </div>
 );
-export default Error504;
+export default withRouter(Error504);

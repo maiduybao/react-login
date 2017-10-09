@@ -51,7 +51,12 @@ class RestrictedRoute extends Route {
             if (this.isAuthorized()) {
                 return <AuthorizedComponent {...rest} />;
             }
-            return <Redirect to="/403"/>;
+            return <Redirect to={
+                {
+                    pathname: "/403",
+                    state: {from: rest.location}
+                }
+            }/>;
         }
 
         return <Redirect to={

@@ -1,4 +1,5 @@
 import React from "react";
+import {withRouter} from "react-router-dom";
 import "./error.scss";
 
 const Error503 = () => (
@@ -11,4 +12,4 @@ const Error503 = () => (
     </div>
 );
 
-export default Error503;
+export default withRouter(Error503);

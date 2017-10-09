@@ -1,4 +1,5 @@
 import React from "react";
+import {withRouter} from "react-router-dom";
 import "./error.scss";
 
 const Error500 = () => (
@@ -11,4 +12,4 @@ const Error500 = () => (
     </div>
 );
 
-export default Error500;
+export default withRouter(Error500);
