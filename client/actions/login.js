@@ -30,7 +30,7 @@ export default function login(credentials) {
         dispatch(setLoginSuccess(false));
         dispatch(setLoginError(null));
 
-        return fetch(BASE_API_URI + "/authenticate", {
+        return fetch(BASE_API_URI + "/oauth/authenticate", {
             method: "post",
             headers: {
                 Accept: "application/json",
@@ -40,14 +40,14 @@ export default function login(credentials) {
         })
         .then((res) => res.json())
         .then((data) => {
-            const {error, accessToken} = data;
+            const {error, accessToken, tokenType} = data;
             dispatch(setLoginPending(false));
             if (error) {
                 dispatch(setLoginError(error.message));
                 return false;
             }
             dispatch(setLoginSuccess(true));
-            localStorage.setItem(ACCESS_TOKEN, accessToken || "");
+            localStorage.setItem(ACCESS_TOKEN, `${tokenType} ${accessToken}` || "");
             return true;
         })
         .catch((ex) => {

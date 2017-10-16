@@ -70,7 +70,6 @@ module.exports = {
                             options: {
                                 ident: "postcss",
                                 plugins: (loader) => [
-                                    require("postcss-import")(),
                                     require("postcss-cssnext")({
                                         browsers: "last 2 versions"
                                     }),
@@ -125,7 +124,8 @@ module.exports = {
                 secure: false
             }
         }
-    }
+    },
+    resolve: { extensions: [ ".js", ".json" ] }
 };
 
 
