@@ -12,7 +12,9 @@
     "build": "webpack -p",
     "build:dev": "webpack",
     "start": "webpack-dev-server --progress --colors --history-api-fallback",
-    "lint": "eslint --ext .jsx,.js client/"
+    "lint": "eslint --ext .jsx,.js client/ && sass-lint client/css/*.scss -v -q",
+    "fix": "eslint --fix --debug --ext .jsx,.js client/",
+    "sass-lint": "sass-lint client/css/*.scss -v -q"
   },
   "repository": {
     "type": "git",
@@ -36,7 +38,8 @@
     "babel-preset-stage-3": "^6.24.1",
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
-    "eslint": "^4.8.0",
+    "cssnano": "^3.10.0",
+    "eslint": "^4.9.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.7.0",
@@ -47,11 +50,16 @@
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.5.3",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.0.8",
+    "resolve-url-loader": "^2.1.1",
+    "sass-lint": "^1.12.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1"
+    "webpack": "^3.7.1",
+    "webpack-dev-server": "^2.9.2"
   },
   "dependencies": {
     "bootstrap-v4-dev": "^4.0.0-alpha.6",

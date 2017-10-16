@@ -5,7 +5,7 @@ import {withRouter} from "react-router-dom";
 import login from "../actions/login";
 import LoginForm from "../components/login/LoginForm";
 import RegisterLink from "../components/login/RegisterLink";
-import "./login.scss";
+import "../css/login.scss";
 
 class LoginPage extends Component {
 

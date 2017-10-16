@@ -21,6 +21,13 @@ module.exports = {
     },
     module: {
         rules: [
+            /*
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                exclude: [path.resolve(__dirname, "/node_modules/")],
+                loader: "eslint-loader"
+            },*/
             {
                 test: /\.(js|jsx)$/,
                 loader: "babel-loader",
@@ -53,15 +60,34 @@ module.exports = {
                         {
                             loader: "css-loader",
                             options: {
+                                sourceMap: true,
+                            //    modules: true,
+                             //  importLoaders: 1
+                            }
+                        },
+                        {
+                            loader: "postcss-loader",
+                            options: {
+                                ident: "postcss",
+                                plugins: (loader) => [
+                                    require("postcss-import")(),
+                                    require("postcss-cssnext")({
+                                        browsers: "last 2 versions"
+                                    }),
+                                    require("cssnano")()
+                                ],
                                 sourceMap: true
                             }
                         },
                         {
+                            loader: "resolve-url-loader",
+                            options: { sourceMap: true }
+                        },
+                        {
                             loader: "sass-loader",
-                            options: {
-                                sourceMap: true
-                            }
+                            options: { sourceMap: true }
                         }
+
                     ],
                     fallback: "style-loader"
                 })
