@@ -1,5 +1,5 @@
 import {LOGIN_PENDING, LOGIN_FULFILLED, LOGIN_REJECTED} from "./types";
-import {ACCESS_TOKEN, BASE_API_URI} from "../components/common/constants";
+import {ACCESS_TOKEN, LOGIN_API_URL} from "../components/common/constants";
 
 const logger = console;
 
@@ -30,7 +30,7 @@ export default function login(credentials) {
         dispatch(setLoginSuccess(false));
         dispatch(setLoginError(null));
 
-        return fetch(BASE_API_URI + "/oauth/authenticate", {
+        return fetch(LOGIN_API_URL, {
             method: "post",
             headers: {
                 Accept: "application/json",
