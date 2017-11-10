@@ -20,7 +20,7 @@ const Root = ({store}) => (
                     <Route path="/500" component={Error500}/>
                     <Route path="/503" component={Error503}/>
                     <Route path="/504" component={Error504}/>
-                    <Route render={() => <Redirect to="/404"/>}/>
+                    <Route component={Error404}/>
             </Switch>
     </Provider>
 );

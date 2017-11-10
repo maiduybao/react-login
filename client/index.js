@@ -9,5 +9,5 @@ render(
     <Router>
         <Root store={store}/>
     </Router>,
-    document.getElementById("app")
+    document.getElementById("app-root")
 );

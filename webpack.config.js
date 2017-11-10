@@ -1,7 +1,7 @@
 "use strict";
 
 const path = require("path");
-const Webpack = require("webpack");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -12,7 +12,10 @@ const PROJECT_PATHS = {
 };
 module.exports = {
     devtool: "inline-source-map",
-    entry: [path.join(PROJECT_PATHS.app, "index.js")],
+    entry: {
+        "app": path.join(PROJECT_PATHS.app, "index.js")
+    },
+//    entry: [path.join(PROJECT_PATHS.app, "index.js")],
     output: {
         path: path.resolve(__dirname, "dist"),
         //    filename: 'bundle.js'
@@ -98,7 +101,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new Webpack.DefinePlugin({
+        new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
         }),
         new ExtractTextPlugin({
@@ -111,7 +114,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin([PROJECT_PATHS.build])
     ].concat(process.env.NODE_ENV === "production" ? [
-        new Webpack.optimize.UglifyJsPlugin({
+        new webpack.optimize.UglifyJsPlugin({
             sourceMap: true
         })
     ] : []),
