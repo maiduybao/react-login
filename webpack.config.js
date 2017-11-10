@@ -92,7 +92,7 @@ module.exports = {
                 })
             },
             {
-                test: /\.(jpe?g|png|gif|ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                test: /\.(jpe?g|png|gif|ttf|otf|eot|svg|ico|woff(2)?)(\?[a-z0-9]+)?$/,
                 loader: "file-loader"
             }
         ]
@@ -106,7 +106,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: "index.html",
-            template: path.join(PROJECT_PATHS.app, "index.html")
+            template: path.join(PROJECT_PATHS.app, "index.html"),
+            favicon: path.join(PROJECT_PATHS.app, "favicon.ico")
         }),
         new CleanWebpackPlugin([PROJECT_PATHS.build])
     ].concat(process.env.NODE_ENV === "production" ? [

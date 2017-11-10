@@ -1,19 +1,5 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import {Button} from "react-bootstrap";
-
-const PasswordInput = styled.input`
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-`;
-
-const EmailInput = styled.input`
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-`;
 
 class LoginForm extends Component {
 
@@ -57,20 +43,18 @@ class LoginForm extends Component {
                     </div> : null
                 }
                 <label htmlFor="email" className="sr-only">Email address</label>
-                <EmailInput type="email" id="email" name="email" className="form-control page-login__form-control"
+                <input type="email" id="email" name="email" className="form-control page-login__form-control"
                             placeholder="Email address" required minLength="3"
                             onChange={this.handleInputChange} value={credentials.email || ""}
                             title="Enter your email"/>
                 <label htmlFor="password" className="sr-only">Password</label>
-                <PasswordInput type="password" id="password" name="password"
+                <input type="password" id="password" name="password"
                                className="form-control page-login__form-control" placeholder="Password"
                                required onChange={this.handleInputChange} value={credentials.password || ""}
                                minLength="6" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
                                title="Enter a password consisting of 6-12 characters with uppercase, lowercase, and number"
                                autoComplete="false"/>
-                <Button type="submit" disabled={isLoginPending} block={true} bsSize="large" bsStyle="primary">
-                    Sign in
-                </Button>
+                <button type="submit" className="btn-primary btn-lg btn-block" disabled={isLoginPending}>Sign in</button>
             </form>
         );
     }
