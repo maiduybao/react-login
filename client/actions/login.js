@@ -32,10 +32,10 @@ export default function login(credentials) {
 
         return fetch(LOGIN_API_URL, {
             method: "post",
-            headers: {
-                Accept: "application/json",
+            headers: new Headers({
+                "Accept": "application/json",
                 "Content-Type": "application/json"
-            },
+            }),
             body: JSON.stringify(credentials)
         })
         .then((res) => res.json())
