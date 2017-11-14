@@ -65,7 +65,7 @@ module.exports = {
                             options: {
                                 sourceMap: true,
                             //    modules: true,
-                                //   importLoaders: 1,
+                            //    importLoaders: 1,
                             //    localIdentName: "[name]__[local]"
                             }
                         },
@@ -97,9 +97,18 @@ module.exports = {
                 })
             },
             {
-                test: /\.(jpe?g|png|gif|ttf|otf|eot|svg|ico|woff(2)?)(\?[a-z0-9]+)?$/,
+                test: /\.(jpe?g|png|gif|ttf|otf|eot|svg|ico?)(\?[a-z0-9]+)?$/,
                 loader: "file-loader"
-            }
+            },
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: "url-loader",
+                options: {
+                    limit: 10000,
+                    mimetype: "application/font-woff"
+                }
+            },
+
         ]
     },
     plugins: [
@@ -107,7 +116,8 @@ module.exports = {
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
         }),
         new ExtractTextPlugin({
-            filename: "main_[hash].css"
+            filename: "main_[hash].css",
+            allChunks: true
         }),
         new HtmlWebpackPlugin({
             filename: "index.html",
