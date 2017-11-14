@@ -57,7 +57,7 @@ module.exports = {
                 exclude: [path.resolve(__dirname, "/node_modules/")]
             },
             {
-                test: /\.(scss|sass)$/,
+                test: /\.(scss)$/,
                 use: ExtractTextPlugin.extract({
                     use: [
                         {
@@ -65,18 +65,20 @@ module.exports = {
                             options: {
                                 sourceMap: true,
                             //    modules: true,
-                             //  importLoaders: 1
+                                //   importLoaders: 1,
+                            //    localIdentName: "[name]__[local]"
                             }
                         },
                         {
                             loader: "postcss-loader",
                             options: {
-                                ident: "postcss",
+                                ident: 'postcss',
                                 plugins: (loader) => [
-                                    require("postcss-cssnext")({
-                                        browsers: "last 2 versions"
-                                    }),
-                                    require("cssnano")()
+                                    require('postcss-nested'),
+                                    require('postcss-import')({ root: loader.resourcePath }),
+                                    require('postcss-cssnext')({warnForDuplicates: false}),
+                                    require('autoprefixer')(),
+                                    require('cssnano')()
                                 ],
                                 sourceMap: true
                             }
