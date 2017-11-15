@@ -1,5 +1,5 @@
 import {LOGIN_PENDING, LOGIN_FULFILLED, LOGIN_REJECTED} from "./types";
-import {ACCESS_TOKEN, LOGIN_API_URL} from "../components/common/constants";
+import {ACCESS_TOKEN, LOGIN_API_URL} from "../constants";
 
 const logger = console;
 

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Redirect} from "react-router-dom";
-import {ACCESS_TOKEN} from "./common/constants";
+import {ACCESS_TOKEN} from "../constants";
 
 
 class Logout extends Component {
