@@ -1,4 +1,4 @@
-@import "~bootstrap-v4-dev/scss/variables";
+@import '~bootstrap/scss/bootstrap';
 
 .page-error {
   max-width: 600px;
@@ -7,10 +7,10 @@
   text-align: center;
 
   &__danger-text {
-    color: $alert-danger-text;
+    color: theme-color('danger');
   }
 
   &__warning-text {
-    color: $alert-warning-text;
+    color: theme-color('warning');
   }
 }
