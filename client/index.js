@@ -1,7 +1,7 @@
 import React from "react";
 import {render} from "react-dom";
 import {BrowserRouter as Router} from "react-router-dom";
-import Root from "./containers/Root";
+import Root from "./components/Root";
 import store from "./store";
 import "./styles.scss";
 

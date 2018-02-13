@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Route, Redirect} from "react-router-dom";
 import intersection from "lodash/intersection";
-import {ACCESS_TOKEN} from "../../constants";
+import {ACCESS_TOKEN} from "../constants";
 import jwtDecode from "jwt-decode";
 
 const logger = console;
@@ -10,7 +10,7 @@ const storage = localStorage;
 
 class RestrictedRoute extends Route {
 
-    static isLogin() {
+    static isAuthenticated() {
         const token = storage.getItem(ACCESS_TOKEN);
         if (token !== null) {
             try {
@@ -48,7 +48,7 @@ class RestrictedRoute extends Route {
 
     render() {
         const {component: AuthorizedComponent, ...rest} = this.props;
-        if (RestrictedRoute.isLogin()) {
+        if (RestrictedRoute.isAuthenticated()) {
             if (this.isAuthorized()) {
                 return <AuthorizedComponent {...rest} />;
             }

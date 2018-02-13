@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Provider} from "react-redux";
 import {Switch, Route, Redirect} from "react-router-dom";
-import Logout from "../components/Logout";
-import Dashboard from "../components/Dashboard";
-import {Error403, Error404, Error500, Error503, Error504} from "../components/errors";
-import RestrictedRoute from "../components/common/RestrictedRoute";
-import LoginPage from "./LoginPage";
+import Logout from "./Logout";
+import Dashboard from "./Dashboard";
+import {Error403, Error404, Error500, Error503, Error504} from "./errors/index";
+import RestrictedRoute from "./RestrictedRoute";
+import LoginPage from "../containers/LoginPage";
 
 const Root = ({store}) => (
     <Provider store={store}>
